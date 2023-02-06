@@ -8,7 +8,6 @@ router.get(
   async (req: Request, res: Response) => {
     const comments = await Comment.find({ postId: req.params.postId });
 
-    console.log(comments);
     res.status(200).send(comments);
   }
 );

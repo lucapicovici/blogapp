@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { Comment } from '../models/comment';
+import axios from 'axios';
 
 const router = express.Router();
 
@@ -17,7 +18,16 @@ router.post(
     const createdComment = Comment.build(comment);
     await createdComment.save();
 
-    console.log(createdComment);
+    await axios.post('http://event-bus-srv:3000/api/event-bus/events', {
+      type: 'CommentCreated',
+      data: {
+        id: createdComment._id,
+        content,
+        postId: req.params.postId,
+        status: 'pending',
+      },
+    });
+
     res.status(201).send(createdComment);
   }
 );

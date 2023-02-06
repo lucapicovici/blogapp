@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { Post } from '../models/post';
 import { validateRequest } from '@iceydc-projects/common';
+import axios from 'axios';
 
 const router = express.Router();
 
@@ -19,6 +20,14 @@ router.post(
 
     const post = Post.build({ title });
     await post.save();
+
+    await axios.post('http://event-bus-srv:3000/api/event-bus/events', {
+      type: 'PostCreated',
+      data: {
+        id: post._id,
+        title,
+      },
+    });
 
     res.send(post).status(201);
   }
