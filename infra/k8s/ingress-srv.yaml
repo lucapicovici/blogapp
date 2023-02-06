@@ -10,6 +10,13 @@ spec:
     - host: blogapp.dev
       http:
         paths:
+          - path: /api/comments/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: comments-srv
+                port:
+                  number: 3000
           - path: /api/posts/?(.*)
             pathType: Prefix
             backend:
