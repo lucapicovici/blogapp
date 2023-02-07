@@ -21,13 +21,17 @@ router.post(
     const post = Post.build({ title });
     await post.save();
 
-    await axios.post('http://event-bus-srv:3000/api/event-bus/events', {
-      type: 'PostCreated',
-      data: {
-        id: post._id,
-        title,
-      },
-    });
+    await axios
+      .post('http://event-bus-srv:3000/api/event-bus/events', {
+        type: 'PostCreated',
+        data: {
+          id: post._id,
+          title,
+        },
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
     res.send(post).status(201);
   }
