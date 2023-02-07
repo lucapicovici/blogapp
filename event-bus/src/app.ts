@@ -23,6 +23,10 @@ app.post('/api/event-bus/events', (req: Request, res: Response) => {
     .catch((err) => {
       console.log(err.message);
     });
+  // Query
+  axios.post('http://query-srv:3000/api/query/events', event).catch((err) => {
+    console.log(err.message);
+  });
 
   res.send({ status: 'OK' });
 });

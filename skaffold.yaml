@@ -8,6 +8,14 @@ build:
   local:
     push: false
   artifacts:
+    - image: lucapicovici/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/*.ts'
+            dest: .
     - image: lucapicovici/posts
       context: posts
       docker:
@@ -24,8 +32,8 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: lucapicovici/event-bus
-      context: event-bus
+    - image: lucapicovici/query
+      context: query
       docker:
         dockerfile: Dockerfile
       sync:

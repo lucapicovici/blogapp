@@ -1,0 +1,28 @@
+{
+  "name": "query",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node-dev src/index.ts",
+    "test": "jest --watchAll --no-cache"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "setupFilesAfterEnv": [
+      "./src/test/setup.ts"
+    ]
+  },
+  "keywords": [],
+  "author": "Luca Picovici",
+  "license": "ISC",
+  "dependencies": {
+    "@iceydc-projects/common": "^1.0.1",
+    "@types/express": "^4.17.17",
+    "axios": "^1.3.2",
+    "express": "^4.18.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  }
+}

@@ -31,3 +31,10 @@ spec:
                 name: event-bus-srv
                 port:
                   number: 3000
+          - path: /api/query/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: query-srv
+                port:
+                  number: 3000
