@@ -24,6 +24,14 @@ build:
         manual:
           - src: 'src/**/*.js'
             dest: .
+    - image: lucapicovici/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/*.ts'
+            dest: .
     - image: lucapicovici/posts
       context: posts
       docker:

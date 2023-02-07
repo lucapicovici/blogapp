@@ -21,6 +21,18 @@ export const handleEvent = (type: string, data: any) => {
     const post = posts[postId];
     post.comments.push({ id, content, status });
   }
+
+  if (type === 'CommentUpdated') {
+    const { id, content, postId, status } = data;
+
+    const post = posts[postId];
+    const comment = post.comments.find((comment: { id: any }) => {
+      return comment.id === id;
+    });
+
+    comment.status = status;
+    comment.content = content;
+  }
 };
 
 app.get('/api/query/posts', (req, res) => {

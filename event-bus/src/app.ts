@@ -27,6 +27,12 @@ app.post('/api/event-bus/events', (req: Request, res: Response) => {
   axios.post('http://query-srv:3000/api/query/events', event).catch((err) => {
     console.log(err.message);
   });
+  // Moderation
+  axios
+    .post('http://moderation-srv:3000/api/moderation/events', event)
+    .catch((err) => {
+      console.log(err.message);
+    });
 
   res.send({ status: 'OK' });
 });
